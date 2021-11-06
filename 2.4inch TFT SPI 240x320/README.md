@@ -33,25 +33,25 @@ Update raspi
 
 Load the module
 
-    sudo modprobe fbtft_device name=tm022hdh26 rotate=90
+    sudo modprobe fbtft_device name=tm022hdh26 rotate=90 speed=80000000 fps=60
 
 startx
 
     sudo FRAMEBUFFER=/dev/fb1 startx
 
-Adjust Brightness
+Adjust LED Brightness
 
     gpio -g mode 18 pwm
     gpio -g pwm 18 1024
     
 To autostart create file `/etc/modules-load.d/fbtft.conf`
 
-    spi-bmc2835
+    spi-bcm2835
     fbtft_device
     
 Also create file `/etc/modprobe.d/fbtft.conf`
 
-    options fbtft_device name=tn022hdh26 rotate=90 speed=80000000 fps=60 
+    options fbtft_device name=tm022hdh26 rotate=90 speed=80000000 fps=60
     
 Edit `/etc/rc.local`, add to the end
 
@@ -59,3 +59,5 @@ Edit `/etc/rc.local`, add to the end
     sudo FRAMEBUFFER=/dev/fb1 startx
     
     exit 0
+
+Reboot
