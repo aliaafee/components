@@ -31,6 +31,21 @@ Enable SPI with raspi-config
 
 Update raspi
 
+Use this driver https://github.com/juj/fbcp-ili9341
+
+    sudo apt-get install git cmake
+    cd ~
+    git clone https://github.com/juj/fbcp-ili9341.git
+    cd fbcp-ili9341
+    mkdir build
+    cd build
+    cmake -DILI9341=ON -DGPIO_TFT_DATA_CONTROL=24 -DGPIO_TFT_RESET_PIN=25 -DGPIO_TFT_BACKLIGHT=18 -DSPI_BUS_CLOCK_DIVISOR=6 -DBACKLIGHT_CONTROL=ON -DSTATISTICS=0 ..
+    make -j
+    sudo ./fbcp-ili9341
+
+
+### Following is depricated
+
 Load the module
 
     sudo modprobe fbtft_device name=tm022hdh26 rotate=90 speed=80000000 fps=60
